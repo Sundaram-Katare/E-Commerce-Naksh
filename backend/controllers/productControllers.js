@@ -1,7 +1,6 @@
-import ProductModel from "../models/ProductModel";
-import CartModel from "../models/CartModel";
+import ProductModel from "../models/ProductModel.js";
 
-export default getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
     try {
         const products = await ProductModel.find({});
         return res.status(200).json(products);
