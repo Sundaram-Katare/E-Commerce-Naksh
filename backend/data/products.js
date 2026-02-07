@@ -1,7 +1,7 @@
 const products = [
   {
     "id": 1,
-    "name": "Gold Ring",
+    "name": "Golden Ring",
     "price": 12000,
     "image": "https://via.placeholder.com/200",
     "description": "22K Gold Ring"
