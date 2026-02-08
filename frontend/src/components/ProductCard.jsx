@@ -1,8 +1,18 @@
-
+import { useDispatch } from "react-redux";
+import { addToCart, fetchCart } from "../features/Cart/cartSlice.js";
 
 export default function ProductCard({ product }) {
+    const dispatch = useDispatch();
+
+    const handleAddToCart = async () => {
+    const result = await dispatch(addToCart({ productId: product._id, quantity: 1 }));
+    if (!result.payload?.error) {
+        dispatch(fetchCart());
+    }
+};
+
     return (
-        <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-md font-playfair hover:shadow-lg transition-shadow duration-300 overflow-hidden">
             <div className="bg-gray-200 h-48 flex items-center justify-center">
                 {product.image ? (
                     <img 
@@ -25,7 +35,10 @@ export default function ProductCard({ product }) {
                     <span className="text-2xl font-bold text-green-600">
                         ${product.price}
                     </span>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors duration-200">
+                    <button 
+                        onClick={handleAddToCart}
+                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                    >
                         Add to Cart
                     </button>
                 </div>

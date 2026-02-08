@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         pacifico: ['Pacifico', 'Sans'],
+        playfair: ['"Playfair Display"', 'serif'],
       }
     },
   },

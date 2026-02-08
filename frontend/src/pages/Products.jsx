@@ -17,11 +17,11 @@ export default function Products() {
 
     return (
         <>
-            <Navbar />
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gradient-to-r from-[#61203D] to-[#B56565] px-36">
+                   <Navbar />
                 <div className="container mx-auto px-4 py-10">
-                    <h1 className="text-4xl font-bold mb-10 text-center">Products</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <h1 className="text-6xl font-bold mb-10 text-center text-white font-playfair">Exclusive Collection</h1>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {products && products.length > 0 ? (
                             products.map((product) => (
                                 <ProductCard key={product._id} product={product} />
