@@ -38,7 +38,7 @@ const products = [
     "id": 6,
     "name": "Diamond Ring",
     "price": 30000,
-    "image": "",
+    "image": "https://cdn-media.glamira.com/media/product/newgeneration/view/1/sku/Queen-3crt/diamond/diamond-Brillant_AA/stone2/diamond-Brillant_AAA/alloycolour/yellow.jpg",
     "description": "Solitaire diamond ring"
   },
   {
@@ -52,7 +52,7 @@ const products = [
     "id": 8,
     "name": "Koki Hair Accessory",
     "price": 1200,
-    "image": "",
+    "image": "https://static.wixstatic.com/media/39dc9b_393bbfbdc1d940129ec97c939d1c4f64~mv2.jpg/v1/fill/w_623,h_623,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/39dc9b_393bbfbdc1d940129ec97c939d1c4f64~mv2.jpg",
     "description": "Decorative koki hair accessory"
   },
   {

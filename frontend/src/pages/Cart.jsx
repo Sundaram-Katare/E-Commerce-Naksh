@@ -25,10 +25,10 @@ export default function Cart() {
     };
 
     const handleDelete = (cartId) => {
-    dispatch(deleteFromCart(cartId)).then(() => {
-        dispatch(fetchCart());
-    });
-};
+        dispatch(deleteFromCart(cartId)).then(() => {
+            dispatch(fetchCart());
+        });
+    };
 
     const getProductDetails = (productId) => {
         return products.find(p => p._id === productId);
@@ -47,48 +47,68 @@ export default function Cart() {
         <>
             <div className="min-h-screen bg-gradient-to-r from-[#61203D] to-[#B56565]">
                 <Navbar />
-                <div className="container mx-auto px-4 py-10 max-w-4xl">
-                    <h1 className="text-6xl font-bold mb-10 text-center text-white font-playfair">Shopping Cart</h1>
-                    
-                    {error && <div className="text-center py-10 text-red-500 bg-white rounded-lg mb-4">Error: {error}</div>}
-                    
+                <div className="container mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-10 max-w-5xl">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 text-center text-white font-playfair">
+                        Shopping Cart
+                    </h1>
+
+                    {error && (
+                        <div className="text-center py-6 md:py-10 text-red-500 bg-white rounded-lg mb-4">
+                            Error: {error}
+                        </div>
+                    )}
+
                     {cartItems.length === 0 ? (
-                        <div className="text-center py-10 text-white bg-white/10 rounded-lg">
-                            <p className="text-2xl">Your cart is empty</p>
+                        <div className="text-center py-8 md:py-10 text-white bg-white/10 rounded-lg">
+                            <p className="text-xl sm:text-2xl">Your cart is empty</p>
                         </div>
                     ) : (
                         <div className="space-y-4">
                             {cartItems.map((item) => {
                                 const product = getProductDetails(item.productId);
                                 if (!product) return null;
-                                
+
                                 return (
-                                    <div key={item._id} className="bg-white rounded-lg shadow-md p-6 flex items-center justify-between">
-                                        <div className="flex items-center space-x-6 flex-1">
+                                    <div
+                                        key={item._id}
+                                        className="bg-[#ffe0dc] rounded-lg shadow-md p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                                    >
+                                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 flex-1">
                                             {product.image && (
-                                                <img 
-                                                    src={product.image} 
+                                                <img
+                                                    src={product.image}
                                                     alt={product.name}
-                                                    className="w-24 h-24 object-cover rounded-lg"
+                                                    className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg"
                                                 />
                                             )}
+
                                             <div className="flex-1">
-                                                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                                                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">
                                                     {product.name}
                                                 </h3>
+
                                                 <p className="text-gray-600 mb-2">
                                                     ${product.price}
                                                 </p>
+
                                                 <div className="flex items-center space-x-3">
-                                                    <button 
-                                                        onClick={() => handleDecreaseQuantity(item._id, item.quantity)}
+                                                    <button
+                                                        onClick={() =>
+                                                            handleDecreaseQuantity(item._id, item.quantity)
+                                                        }
                                                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-1 px-3 rounded-lg"
                                                     >
                                                         −
                                                     </button>
-                                                    <span className="text-lg font-semibold">{item.quantity}</span>
-                                                    <button 
-                                                        onClick={() => handleIncreaseQuantity(item._id, item.quantity)}
+
+                                                    <span className="text-base sm:text-lg font-semibold">
+                                                        {item.quantity}
+                                                    </span>
+
+                                                    <button
+                                                        onClick={() =>
+                                                            handleIncreaseQuantity(item._id, item.quantity)
+                                                        }
                                                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-1 px-3 rounded-lg"
                                                     >
                                                         +
@@ -96,26 +116,31 @@ export default function Cart() {
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div className="text-right">
-                                            <p className="text-xl font-bold text-green-600 mb-4">
+
+                                        <div className="flex sm:flex-col justify-between sm:justify-center items-center sm:items-end gap-3">
+                                            <p className="text-lg sm:text-xl font-bold text-green-600">
                                                 ${(product.price * item.quantity).toFixed(2)}
                                             </p>
-                                            <button 
+
+                                            <button
                                                 onClick={() => handleDelete(item._id)}
-                                                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                                                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-colors duration-200 text-sm sm:text-base"
                                             >
-                                                Delete
+                                                Remove
                                             </button>
                                         </div>
                                     </div>
                                 );
                             })}
-                            
-                            <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+
+                            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mt-6">
                                 <div className="flex justify-between items-center">
-                                    <h2 className="text-2xl font-bold text-gray-800">Total:</h2>
-                                    <p className="text-3xl font-bold text-green-600">${calculateTotal()}</p>
+                                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
+                                        Total:
+                                    </h2>
+                                    <p className="text-2xl sm:text-3xl font-bold text-green-600">
+                                        ${calculateTotal()}
+                                    </p>
                                 </div>
                             </div>
                         </div>

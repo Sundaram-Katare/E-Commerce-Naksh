@@ -17,21 +17,26 @@ export default function Products() {
 
     return (
         <>
-            <div className="min-h-screen bg-gradient-to-r from-[#61203D] to-[#B56565] px-36">
-                   <Navbar />
-                <div className="container mx-auto px-4 py-10">
-                    <h1 className="text-6xl font-bold mb-10 text-center text-white font-playfair">Exclusive Collection</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {products && products.length > 0 ? (
-                            products.map((product) => (
-                                <ProductCard key={product._id} product={product} />
-                            ))
-                        ) : (
-                            <p className="text-center col-span-full">No products available</p>
-                        )}
-                    </div>
-                </div>
-            </div>
+            <div className="min-h-screen bg-gradient-to-r from-[#61203D] to-[#B56565] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-36">
+    <Navbar />
+    <div className="container mx-auto px-2 sm:px-4 py-8 md:py-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 text-center text-white font-playfair">
+            Exclusive Collection
+        </h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+            {products && products.length > 0 ? (
+                products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                ))
+            ) : (
+                <p className="text-center col-span-full text-white">
+                    No products available
+                </p>
+            )}
+        </div>
+    </div>
+</div>
         </>
     );
 }
