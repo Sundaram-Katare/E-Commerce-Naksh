@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const BACKEND_URL = import.meta.env.VITE_PRODUCT_APP_BACKEND_URL || "http://localhost:3000/api/products";
+
 const initialState = {
     isLoading: false,
     products: [],
@@ -11,7 +13,7 @@ export const fetchProducts = createAsyncThunk(
     "products/fetch",
     async (_, { rejectWithValue}) => {
         try {
-            const response = await axios.get("http://localhost:3000/api/products");
+            const response = await axios.get(`${BACKEND_URL}`);
             return response.data;
         } catch (err) {
             return rejectWithValue(err?.response?.data || err.message);
